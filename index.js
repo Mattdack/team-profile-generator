@@ -2,7 +2,8 @@ const Manager = require('./lib/Manager');
 const Intern = require('./lib/Intern');
 const Engineer = require('./lib/Engineer');
 const inquirer = require('inquirer');
-
+const fs = require('fs');
+const generateHtml = require('./util/generateHtml')
 const teamMembers = [];
 
 init();
@@ -67,8 +68,8 @@ function addTeamMember() {
         }else if(response.whatNext === `Add intern`) {
             addIntern();
         }else {
-            console.log(`Thank you for utilizing the Team Webpage Generator. Have a nice day!`)
-            console.log(teamMembers);
+            console.log(`Thank you for utilizing the Team Webpage Generator. Have a nice day!`);
+            writeFile();
         }
     })
 }
@@ -129,4 +130,8 @@ function addIntern() {
         teamMembers.push(teamIntern);
         addTeamMember();
     })
+}
+
+function writeFile() {
+    fs.writeFile(`index.html`, generateHtml(teamMembers), (err) => err ? console.log(err):console.log(generateHtml(teamMembers)));
 }
