@@ -68,8 +68,8 @@ function addTeamMember() {
         }else if(response.whatNext === `Add intern`) {
             addIntern();
         }else {
-            console.log(`Thank you for utilizing the Team Webpage Generator. Have a nice day!`);
             writeFile();
+            console.log(`Thank you for utilizing the Team Webpage Generator. Have a nice day!`);
         }
     })
 }
@@ -93,7 +93,7 @@ function addEngineer() {
         },
         {
             type: `input`,
-            message: `What is the engineer's link to their github account?`,
+            message: `What is the engineer's github account name?`,
             name: `github`,
         }
     ]).then((response) => {
@@ -133,5 +133,5 @@ function addIntern() {
 }
 
 function writeFile() {
-    fs.writeFile(`index.html`, generateHtml(teamMembers), (err) => err ? console.log(err):console.log(generateHtml(teamMembers)));
+    fs.writeFile(`index.html`, generateHtml(teamMembers), (err) => err ? console.log(err):console.log('A new file named index.html has been generated in your working directory!.'));
 }
